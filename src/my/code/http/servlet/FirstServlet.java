@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
 
 @WebServlet("/first")
 public class FirstServlet extends HttpServlet {
@@ -19,6 +21,13 @@ public class FirstServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        var paramValue = req.getParameter("param");
+        var parameterMap = req.getParameterMap();
+        System.out.println(paramValue);
+        parameterMap.forEach((key, values) -> {
+            System.out.println(key + ": " + Arrays.toString(values));
+        });
+
         req.getHeader("user-agent");
         var headerNames = req.getHeaderNames();
         while (headerNames.hasMoreElements()) {
@@ -33,6 +42,14 @@ public class FirstServlet extends HttpServlet {
         try (var writer = resp.getWriter()) {
             writer.write("<h1>Hello from First Servlet!</h2>");
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        var parameterMap = req.getParameterMap();
+        parameterMap.forEach((key, values) -> {
+            System.out.println(key + ": " + Arrays.toString(values));
+        });
     }
 
     @Override
