@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Тест POST форми</title>
+</head>
+<body>
+<h1>Відправити форму</h1>
+<form action="/my-app/process-form" method="POST">
+    <label for="userName">Ім'я:</label><br>
+    <input type="text" id="userName" name="userName" value="Тест Ім'я"><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" value="test@example.com"><br><br>
+
+    <label>Інтереси:</label><br>
+    <input type="checkbox" id="interest1" name="interests" value="Програмування">
+    <label for="interest1">Програмування</label><br>
+    <input type="checkbox" id="interest2" name="interests" value="Читання">
+    <label for="interest2">Читання</label><br>
+    <input type="checkbox" id="interest3" name="interests" value="Подорожі">
+    <label for="interest3">Подорожі</label><br><br>
+
+    <input type="submit" value="Відправити">
+</form>
+</body>
+</html>
