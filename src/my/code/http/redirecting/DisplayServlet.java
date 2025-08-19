@@ -58,7 +58,9 @@ public class DisplayServlet extends HttpServlet {
 
         // --- Включення JSP-сторінки (include) ---
         out.println("<h2>Включений контент з JSP:</h2>");
-        RequestDispatcher jspDispatcher = request.getRequestDispatcher("/WEB-INF/views/display.jsp");
+//        RequestDispatcher jspDispatcher = request.getRequestDispatcher("/WEB-INF/views/display.jsp");
+        RequestDispatcher jspDispatcher = request.getRequestDispatcher("/WEB-INF/views/welcome.jsp");
+
         jspDispatcher.include(request, response); // Включаємо вміст JSP
 
         out.println("</body></html>");
