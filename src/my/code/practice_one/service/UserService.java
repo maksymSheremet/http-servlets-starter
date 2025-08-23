@@ -1,11 +1,16 @@
 package my.code.practice_one.service;
 
 import lombok.SneakyThrows;
+import my.code.http.attributes.UserDto;
 import my.code.practice_one.dao.UserDao;
 import my.code.practice_one.dto.CreateUserDto;
+import my.code.practice_one.dto.ResponseUserDto;
 import my.code.practice_one.exception.ValidationException;
 import my.code.practice_one.mapper.CreaterUserMapper;
+import my.code.practice_one.mapper.UserMapper;
 import my.code.practice_one.validator.CreateUserValidator;
+
+import java.util.Optional;
 
 public class UserService {
     private static final UserService INSTANCE = new UserService();
@@ -13,6 +18,7 @@ public class UserService {
     private final UserDao userDao = UserDao.getInstance();
     private final CreaterUserMapper createrUserMapper = CreaterUserMapper.getInstance();
     private final ImageService imageService = ImageService.getInstance();
+    private final UserMapper userMapper = UserMapper.getInstance();
 
     public static UserService getInstance() {
         return INSTANCE;
@@ -28,5 +34,10 @@ public class UserService {
         imageService.upload(user.getImage(), createUserDto.getImage().getInputStream());
         var save = userDao.save(user);
         return save.getId();
+    }
+
+    public Optional<ResponseUserDto> login(String email, String password) {
+        return userDao.findByEmailAndPassword(email, password)
+                .map(userMapper::mapFrom);
     }
 }
