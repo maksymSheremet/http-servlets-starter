@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         userService.login(req.getParameter("email"), req.getParameter("password"))
                 .ifPresentOrElse(user -> onLoginSuccess(user, req, resp),
                         () -> onLoginFail(req, resp)
