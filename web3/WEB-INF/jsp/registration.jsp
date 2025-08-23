@@ -12,6 +12,8 @@
         <title>Title</title>
     </head>
     <body>
+    <img src="${pageContext.request.contextPath}/images/users/img.png" alt="User image">
+<%--    <img src="https://windows10spotlight.com/wp-content/uploads/2023/01/81a6e74c8adbf7f55406e8c4b80669d5.jpg" alt="User image">--%>
         <form action="/registration" method="post" enctype="multipart/form-data">
             <label for="name">Name:
                 <input type="text" name="name" id="name"/>
