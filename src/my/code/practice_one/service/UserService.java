@@ -1,5 +1,6 @@
 package my.code.practice_one.service;
 
+import lombok.SneakyThrows;
 import my.code.practice_one.dao.UserDao;
 import my.code.practice_one.dto.CreateUserDto;
 import my.code.practice_one.exception.ValidationException;
@@ -11,17 +12,20 @@ public class UserService {
     private final CreateUserValidator createUserValidator = CreateUserValidator.getInstance();
     private final UserDao userDao = UserDao.getInstance();
     private final CreaterUserMapper createrUserMapper = CreaterUserMapper.getInstance();
+    private final ImageService imageService = ImageService.getInstance();
 
     public static UserService getInstance() {
         return INSTANCE;
     }
 
+    @SneakyThrows
     public Integer create(CreateUserDto createUserDto) {
         var validationResult = createUserValidator.isValid(createUserDto);
         if (!validationResult.isValid()) {
             throw new ValidationException(validationResult.getErrors());
         }
         var user = createrUserMapper.mapFrom(createUserDto);
+        imageService.upload(user.getImage(), createUserDto.getImage().getInputStream());
         var save = userDao.save(user);
         return save.getId();
     }

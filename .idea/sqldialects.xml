@@ -3,6 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/my/code/practice_one/dao/FlightDao.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/my/code/practice_one/dao/TicketDao.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/my/code/practice_one/dao/UserDao.java" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/src/my/code/practice_one/init_sql/sql_init.sql" dialect="PostgreSQL" />
   </component>
 </project>
