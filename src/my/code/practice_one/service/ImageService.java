@@ -2,6 +2,7 @@ package my.code.practice_one.service;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import my.code.practice_one.util.PropertiesUtil;
 
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Optional;
 
 import static java.nio.file.StandardOpenOption.*;
 
@@ -29,5 +31,13 @@ public class ImageService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @SneakyThrows
+    public Optional<InputStream> get(String imagePath) {
+        var imageFullPath = Path.of(basePath, imagePath);
+        return Files.exists(imageFullPath)
+                ? Optional.of(Files.newInputStream(imageFullPath))
+                : Optional.empty();
     }
 }
