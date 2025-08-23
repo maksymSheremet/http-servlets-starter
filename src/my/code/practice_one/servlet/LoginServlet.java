@@ -9,10 +9,11 @@ import lombok.SneakyThrows;
 import my.code.http.util.JspHelper;
 import my.code.practice_one.dto.ResponseUserDto;
 import my.code.practice_one.service.UserService;
+import my.code.practice_one.util.UrlPath;
 
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet(UrlPath.LOGIN)
 public class LoginServlet extends HttpServlet {
     private final UserService userService = UserService.getInstance();
 
